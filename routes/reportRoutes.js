@@ -12,4 +12,9 @@ router
   .patch(reportsController.updateReport)
   .delete(reportsController.deleteReport);
 
+router.delete(
+  "/:reportId/report-items",
+  reportsController.deleteReportItemsByReportId
+);
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Report = require("../models/Report");
+const ReportItem = require("../models/ReportItem");
 const asyncHandler = require("express-async-handler");
 
 // @desc Get all users
@@ -125,9 +126,23 @@ const deleteReport = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
+// @desc Delete all report items by report ID
+// @route DELETE /reports/:reportId/report-items
+// @access Private
+const deleteReportItemsByReportId = asyncHandler(async (req, res) => {
+  const reportId = req.params.reportId;
+  try {
+    await ReportItem.deleteMany({ report: reportId });
+    res.status(200).json({ message: "Report items deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting report items" });
+  }
+});
+
 module.exports = {
   getAllReports,
   createNewReport,
   updateReport,
   deleteReport,
+  deleteReportItemsByReportId,
 };
