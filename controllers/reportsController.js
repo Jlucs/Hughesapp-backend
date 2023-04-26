@@ -62,7 +62,7 @@ const createNewReport = asyncHandler(async (req, res) => {
 
   if (report) {
     // if created
-    res.status(201).json({ message: `New report ${name} created` });
+    res.status(201).json({ message: `New report ${name} created`, report }); // Send both message and report data
   } else {
     res.status(400).json({ message: "Invalid client data received" });
   }
