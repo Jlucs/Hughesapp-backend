@@ -18,7 +18,6 @@ const getAllReportItems = asyncHandler(async (req, res) => {
       const user = await User.findById(reportItem.user).lean().exec();
       return {
         ...reportItem,
-        username: user.username,
         reportId: reportItem.report,
       };
     })
