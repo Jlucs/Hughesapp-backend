@@ -104,7 +104,7 @@ const updateReportItem = asyncHandler(async (req, res) => {
   } = req.body;
 
   // Confirm data
-  if (!id) {
+  if (!id || !report || !user) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
